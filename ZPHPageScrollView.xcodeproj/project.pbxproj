@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D9A6A7DDCA01A1092D45583A /* Pods_ZPHPageScrollView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7BF4FC0532B152D6770A337 /* Pods_ZPHPageScrollView.framework */; };
 		DA010F382420A59600A0D3DB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DA010F372420A59600A0D3DB /* AppDelegate.m */; };
 		DA010F3B2420A59600A0D3DB /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DA010F3A2420A59600A0D3DB /* SceneDelegate.m */; };
 		DA010F3E2420A59600A0D3DB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA010F3D2420A59600A0D3DB /* ViewController.m */; };
@@ -15,9 +16,15 @@
 		DA010F462420A59700A0D3DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA010F442420A59700A0D3DB /* LaunchScreen.storyboard */; };
 		DA010F492420A59700A0D3DB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DA010F482420A59700A0D3DB /* main.m */; };
 		DA010F522420A5AE00A0D3DB /* ZPHPageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA010F512420A5AE00A0D3DB /* ZPHPageScrollView.m */; };
+		DA21B0A22429D81300D381A9 /* 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DA21B09F2429D81300D381A9 /* 4.jpg */; };
+		DA21B0A32429D81300D381A9 /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DA21B0A02429D81300D381A9 /* 2.jpg */; };
+		DA21B0A42429D81300D381A9 /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DA21B0A12429D81300D381A9 /* 3.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		63FF13E504AAE93BCC964F12 /* Pods-ZPHPageScrollView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZPHPageScrollView.release.xcconfig"; path = "Target Support Files/Pods-ZPHPageScrollView/Pods-ZPHPageScrollView.release.xcconfig"; sourceTree = "<group>"; };
+		A3DE113FC63036FB85C212B1 /* Pods-ZPHPageScrollView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZPHPageScrollView.debug.xcconfig"; path = "Target Support Files/Pods-ZPHPageScrollView/Pods-ZPHPageScrollView.debug.xcconfig"; sourceTree = "<group>"; };
+		C7BF4FC0532B152D6770A337 /* Pods_ZPHPageScrollView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZPHPageScrollView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA010F332420A59600A0D3DB /* ZPHPageScrollView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZPHPageScrollView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA010F362420A59600A0D3DB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DA010F372420A59600A0D3DB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -32,6 +39,9 @@
 		DA010F482420A59700A0D3DB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DA010F502420A5AE00A0D3DB /* ZPHPageScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZPHPageScrollView.h; sourceTree = "<group>"; };
 		DA010F512420A5AE00A0D3DB /* ZPHPageScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZPHPageScrollView.m; sourceTree = "<group>"; };
+		DA21B09F2429D81300D381A9 /* 4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 4.jpg; sourceTree = "<group>"; };
+		DA21B0A02429D81300D381A9 /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
+		DA21B0A12429D81300D381A9 /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,17 +49,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9A6A7DDCA01A1092D45583A /* Pods_ZPHPageScrollView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		140931DB43B3F96FC73D1ECB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C7BF4FC0532B152D6770A337 /* Pods_ZPHPageScrollView.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2395227E79A6D67B464A0AB5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A3DE113FC63036FB85C212B1 /* Pods-ZPHPageScrollView.debug.xcconfig */,
+				63FF13E504AAE93BCC964F12 /* Pods-ZPHPageScrollView.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		DA010F2A2420A59600A0D3DB = {
 			isa = PBXGroup;
 			children = (
 				DA010F352420A59600A0D3DB /* ZPHPageScrollView */,
 				DA010F342420A59600A0D3DB /* Products */,
+				2395227E79A6D67B464A0AB5 /* Pods */,
+				140931DB43B3F96FC73D1ECB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +94,9 @@
 		DA010F352420A59600A0D3DB /* ZPHPageScrollView */ = {
 			isa = PBXGroup;
 			children = (
+				DA21B0A02429D81300D381A9 /* 2.jpg */,
+				DA21B0A12429D81300D381A9 /* 3.jpg */,
+				DA21B09F2429D81300D381A9 /* 4.jpg */,
 				DA010F362420A59600A0D3DB /* AppDelegate.h */,
 				DA010F372420A59600A0D3DB /* AppDelegate.m */,
 				DA010F392420A59600A0D3DB /* SceneDelegate.h */,
@@ -88,9 +121,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DA010F4C2420A59700A0D3DB /* Build configuration list for PBXNativeTarget "ZPHPageScrollView" */;
 			buildPhases = (
+				1214C15864520FDF1C3CF4C1 /* [CP] Check Pods Manifest.lock */,
 				DA010F2F2420A59600A0D3DB /* Sources */,
 				DA010F302420A59600A0D3DB /* Frameworks */,
 				DA010F312420A59600A0D3DB /* Resources */,
+				48DA4D4286A07EF99E11A8D4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -138,13 +173,58 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA21B0A22429D81300D381A9 /* 4.jpg in Resources */,
 				DA010F462420A59700A0D3DB /* LaunchScreen.storyboard in Resources */,
+				DA21B0A32429D81300D381A9 /* 2.jpg in Resources */,
+				DA21B0A42429D81300D381A9 /* 3.jpg in Resources */,
 				DA010F432420A59700A0D3DB /* Assets.xcassets in Resources */,
 				DA010F412420A59600A0D3DB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1214C15864520FDF1C3CF4C1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ZPHPageScrollView-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		48DA4D4286A07EF99E11A8D4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ZPHPageScrollView/Pods-ZPHPageScrollView-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ZPHPageScrollView/Pods-ZPHPageScrollView-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ZPHPageScrollView/Pods-ZPHPageScrollView-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DA010F2F2420A59600A0D3DB /* Sources */ = {
@@ -293,6 +373,7 @@
 		};
 		DA010F4D2420A59700A0D3DB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A3DE113FC63036FB85C212B1 /* Pods-ZPHPageScrollView.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -310,6 +391,7 @@
 		};
 		DA010F4E2420A59700A0D3DB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 63FF13E504AAE93BCC964F12 /* Pods-ZPHPageScrollView.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

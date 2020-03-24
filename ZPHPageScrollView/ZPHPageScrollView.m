@@ -7,12 +7,13 @@
 //
 
 #import "ZPHPageScrollView.h"
+#import <SDWebImage/SDWebImage.h>
 
 @interface ZPHPageScrollView ()<UIScrollViewDelegate>
 
 @property (nonatomic,strong) UIScrollView *scrollView;
 /// 指示器
-@property (nonatomic,strong) UIPageControl *pageControl;
+@property (nonatomic,strong) ZPHPageControl *pageControl;
 /// 定时器
 @property (nonatomic,strong) NSTimer *timer;
 
@@ -26,60 +27,76 @@
 
 @implementation ZPHPageScrollView
 
--(instancetype)init {
-    
-    if (self = [super init]) {
-        
-        self.backgroundColor = [UIColor redColor];
-    }
-    return self;
-}
-
 -(instancetype)initWithFrame:(CGRect)frame List:(nonnull NSArray<ZPHPageModel *> *)list {
     
     if (self = [super initWithFrame:frame]) {
         
+        NSAssert(list.count > 1, @"数组要大于1个才可以");
+        //默认
+        _timeInterval = 3;
+        _timeOnceScroll = 0.25;
+        
         _list = list;
-        self.backgroundColor = [UIColor greenColor];
+        
+        _leftIndex = list.count - 1;
+        _centerIndex = 0;
+        _rightIndex = 1;
+        
+        self.backgroundColor = [UIColor whiteColor];
         
         _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height)];
         _scrollView.contentSize = CGSizeMake(self.bounds.size.width * 3, self.bounds.size.height);
         _scrollView.showsHorizontalScrollIndicator = false;
+        _scrollView.contentOffset = CGPointMake(self.bounds.size.width, 0);
         _scrollView.pagingEnabled = true;
         _scrollView.delegate = self;
         [self addSubview:_scrollView];
         
         _leftView = [[ZPHPageScrollView_Cell alloc]initWithFrame:CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height)];
-        _leftView.model = _list[0];
+        _leftView.model = _list[_leftIndex];
         [_scrollView addSubview:_leftView];
         
         _centerView = [[ZPHPageScrollView_Cell alloc]initWithFrame:CGRectMake(self.bounds.size.width, 0, self.bounds.size.width, self.bounds.size.height)];
-        _centerView.model = _list[1];
+        _centerView.model = _list[_centerIndex];
         [_scrollView addSubview:_centerView];
         
         _rightView = [[ZPHPageScrollView_Cell alloc]initWithFrame:CGRectMake(self.bounds.size.width * 2, 0, self.bounds.size.width, self.bounds.size.height)];
-        _rightView.model = _list[2];
+        _rightView.model = _list[_rightIndex];
         [_scrollView addSubview:_rightView];
         
-        _pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake(0, 0, 100, 20)];
-        _pageControl.numberOfPages = 3;
-        _pageControl.currentPage = 0;
-        _pageControl.hidesForSinglePage = true;//总页数为1时隐藏
-        _pageControl.pageIndicatorTintColor = [UIColor colorWithWhite:1.0 alpha:0.5];
-        _pageControl.currentPageIndicatorTintColor = [UIColor whiteColor];
-        [self addSubview:_pageControl];
+        self.pageControl = [[ZPHPageControl alloc]initWithFrame:CGRectMake(0, self.bounds.size.height - 20, self.bounds.size.width, 20)];
+        self.pageControl.numberOfPages = _list.count;
+        self.pageControl.currentPage = 0;
+        self.pageControl.hidesForSinglePage = true;//总页数为1时隐藏
+        self.pageControl.pageIndicatorTintColor = [UIColor colorWithWhite:1.0 alpha:0.5];
+        self.pageControl.currentPageIndicatorTintColor = [UIColor whiteColor];
+        [self addSubview:self.pageControl];
         
-        _timer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(timerFunc:) userInfo:nil repeats:true];
-        [[NSRunLoop currentRunLoop]addTimer:_timer forMode:NSRunLoopCommonModes];
     }
     return self;
+}
+
+/// 开始滚动
+-(void)scrollStart {
+    
+    if (!_timer) {
+        
+        _timer = [NSTimer scheduledTimerWithTimeInterval:_timeInterval target:self selector:@selector(timerFunc:) userInfo:nil repeats:true];
+        [[NSRunLoop currentRunLoop]addTimer:_timer forMode:NSRunLoopCommonModes];
+    }
+}
+
+/// 释放定时器
+-(void)timeInvalidate {
+    
+    [self.timer invalidate];
 }
 
 -(void)timerFunc:(NSTimer *)timer {
     
     NSLog(@"timeFunc - %@", NSStringFromCGPoint(_scrollView.contentOffset));
    
-    [UIView animateWithDuration:2 animations:^{
+    [UIView animateWithDuration:_timeOnceScroll animations:^{
         
         self.scrollView.contentOffset = CGPointMake(self.scrollView.contentOffset.x + self.bounds.size.width, 0);
         
@@ -88,13 +105,26 @@
     }];
 }
 
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    
+    NSLog(@"scrollViewWillBeginDragging");
+    [self.timer setFireDate:[NSDate distantFuture]];
+}
+
+-(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
+    
+    NSLog(@"scrollViewWillEndDragging");
+    [self.timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:_timeInterval]];
+}
+
+/// 滑动停止
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     
     CGFloat screenW = self.bounds.size.width;
     
     int index = fabs(scrollView.contentOffset.x) / scrollView.bounds.size.width;
     _pageControl.currentPage = index;
-    NSLog(@"scrollViewDidEndScrollingAnimation %@ %d", NSStringFromCGPoint(scrollView.contentOffset), index);
+    NSLog(@"scrollViewDidEndDecelerating %@ %d", NSStringFromCGPoint(scrollView.contentOffset), index);
     
     CGFloat offsetX = scrollView.contentOffset.x;
     
@@ -136,6 +166,9 @@
     _rightView.model = _list[_rightIndex];
     _leftView.model = _list[_leftIndex];
     _scrollView.contentOffset = CGPointMake(self.bounds.size.width, 0);
+    
+    //指示器
+    _pageControl.currentPage = _centerIndex;
 }
 
 @end
@@ -148,6 +181,7 @@
     if (self = [super initWithFrame:frame]) {
         
         _imgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height)];
+        _imgView.contentMode = UIViewContentModeScaleAspectFit;
         [self addSubview:_imgView];
         
         _subLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height)];
@@ -160,12 +194,43 @@
 
 -(void)setModel:(ZPHPageModel *)model {
     
-    self.backgroundColor = model.backColor;
-    self.subLabel.text = model.text;
+    if (model.backColor) {
+        self.backgroundColor = model.backColor;
+    }
+    
+    if (model.text) {
+        self.subLabel.text = model.text;
+    }
+    
+    if (model.pictureUrlString) {
+        [self.imgView sd_setImageWithURL:[NSURL URLWithString: model.pictureUrlString]];
+    } else if (model.pictureName) {
+        self.imgView.image = [UIImage imageNamed: model.pictureName];
+    }
 }
 
 @end
 
+// MARK: - 数据
 @implementation ZPHPageModel
+
+@end
+
+// MARK: - 自定义指示器
+@implementation ZPHPageControl
+
+-(void)setCurrentPage:(NSInteger)currentPage {
+    
+    [super setCurrentPage:currentPage];
+    
+    for (NSUInteger subviewIndex = 0; subviewIndex < self.subviews.count; subviewIndex ++) {
+        if (subviewIndex == currentPage) {
+            UIImageView *subview = [self.subviews objectAtIndex:subviewIndex];
+            CGSize size;
+            size.width = 10;
+            [subview setFrame:CGRectMake(subview.frame.origin.x, subview.frame.origin.y, size.width, subview.frame.size.height)];
+        }
+    }
+}
 
 @end

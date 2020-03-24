@@ -10,28 +10,51 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/*
+ 自定义
+ */
 //MARK: 数据模型
 @interface ZPHPageModel : NSObject
 
-@property (nonatomic,copy) NSString *text;
-@property (nonatomic,copy) UIColor *backColor;
-@property (nonatomic,copy) NSString *pictureUrlString;
+/// 文字
+@property (nonatomic,strong) NSString *text;
+/// 背景颜色
+@property (nonatomic,strong) UIColor *backColor;
+/// 网络图片地址
+@property (nonatomic,strong) NSString *pictureUrlString;
+/// 本地图片名字
+@property (nonatomic,strong) NSString *pictureName;
 
 @end
+
 
 //MARK: 滚动view
 @interface ZPHPageScrollView : UIView
 /// 数据
 @property (nonatomic,strong) NSArray <ZPHPageModel *> *list;
 
+/// 无限滚动
+@property (nonatomic,assign) BOOL isInfiniteScroll;
+/// 滚动间隔
+@property (nonatomic,assign) NSInteger timeInterval;
+/// 滚动一次的时间
+@property (nonatomic,assign) double timeOnceScroll;
+
 /// 初始化
 /// @param list 数据
 -(instancetype)initWithFrame:(CGRect)frame List:(NSArray <ZPHPageModel *> *)list;
 
+/// 开始滚动
+-(void)scrollStart;
+/// 释放定时器
+-(void)timeInvalidate;
 @end
 
 
-//MARK: 子view
+/*
+  自定义
+ */
+//MARK: 自定义view
 @interface ZPHPageScrollView_Cell : UIView
 /// 标题
 @property (nonatomic,strong) UILabel *subLabel;
@@ -41,5 +64,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) ZPHPageModel *model;
 @end
 
+// MARK: 自定义指示器
+@interface ZPHPageControl : UIPageControl
+
+@end
 
 NS_ASSUME_NONNULL_END
